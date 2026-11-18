@@ -1,0 +1,115 @@
+/* Tokens de Diseño · AURA (DISENO_UI.md) */
+
+:root {
+  /* Colores del logo de AURA */
+  --aura-profundo: #062a2c;
+  --aura-petroleo: #0b3d3b;
+  --aura-menta: #7cf5c9;
+  --aura-lima: #c4f76a;
+  --aura-crema: #fff7da;
+  --aura-degrade: linear-gradient(135deg, var(--aura-menta), var(--aura-lima));
+
+  /* Modo claro por defecto */
+  --bg: #f2f8f5;
+  --surface: #ffffff;
+  --surface-2: #e9f4ef;
+  --ink: #0b2b2c;
+  --muted: #52706c;
+  --line: #d9e9e2;
+  --brand: #0c6b5b;
+  --brand-soft: #def6ec;
+  --ok: #15803d;
+  --ok-soft: #e6f7e9;
+  --warn: #d97706;
+  --warn-soft: #fff4e0;
+  --bad: #dc2626;
+  --bad-soft: #fdecec;
+  --unknown: #8fa9a3;
+  --shadow: 0 1px 2px rgba(6, 42, 44, 0.05), 0 4px 16px rgba(6, 42, 44, 0.07);
+
+  /* Radios y Espaciado */
+  --radius-card: 20px;
+  --radius-control: 12px;
+  --radius-pill: 999px;
+
+  /* Transición */
+  --ease-spring: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-normal: 200ms;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #04201f;
+    --surface: #082d2e;
+    --surface-2: #0e3a3a;
+    --ink: #eafbf3;
+    --muted: #94b8b0;
+    --line: #17494a;
+    --brand: #7cf5c9;
+    --brand-soft: #0f4540;
+    --ok: #a3e86a;
+    --ok-soft: #1c3d24;
+    --warn: #fbbf24;
+    --warn-soft: #3a2f12;
+    --bad: #f87171;
+    --bad-soft: #3d1a1a;
+    --unknown: #5f817a;
+    --shadow: none;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #04201f;
+  --surface: #082d2e;
+  --surface-2: #0e3a3a;
+  --ink: #eafbf3;
+  --muted: #94b8b0;
+  --line: #17494a;
+  --brand: #7cf5c9;
+  --brand-soft: #0f4540;
+  --ok: #a3e86a;
+  --ok-soft: #1c3d24;
+  --warn: #fbbf24;
+  --warn-soft: #3a2f12;
+  --bad: #f87171;
+  --bad-soft: #3d1a1a;
+  --unknown: #5f817a;
+  --shadow: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Enlaces y botones reset */
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+/* Animaciones suaves */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in {
+    animation: fadeIn var(--duration-normal) var(--ease-spring) both;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

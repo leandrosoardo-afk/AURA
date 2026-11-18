@@ -1,0 +1,22 @@
+{
+  "name": "AURA · ¿Me alcanza?",
+  "short_name": "AURA",
+  "description": "Tu caja diaria proyectada a 30 días, sin planillas ni tecnicismos.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#082a2c",
+  "theme_color": "#0c6b5b",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

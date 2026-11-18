@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Caja Clara – Maqueta UI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f7f8;--surface:#fff;--surface-2:#eef3f5;--ink:#14232e;--muted:#5f7180;--line:#e2e9ec;--brand:#0a7c7e;--brand-soft:#e3f4f3;--ok:#16a34a;--ok-soft:#e8f7ee;--warn:#d97706;--warn-soft:#fff4e0;--bad:#dc2626;--bad-soft:#fdecec;--shadow:0 1px 2px rgba(16,24,40,.04),0 4px 16px rgba(16,24,40,.06)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0e1a20;--surface:#15242c;--surface-2:#1c2f38;--ink:#e8f0f2;--muted:#93a8b4;--line:#25404b;--brand:#2bc4bb;--brand-soft:#123a3c;--ok:#34d399;--ok-soft:#123a2a;--warn:#fbbf24;--warn-soft:#3a2f12;--bad:#f87171;--bad-soft:#3d1a1a;--shadow:none}}
+:root[data-theme=dark]{--bg:#0e1a20;--surface:#15242c;--surface-2:#1c2f38;--ink:#e8f0f2;--muted:#93a8b4;--line:#25404b;--brand:#2bc4bb;--brand-soft:#123a3c;--ok:#34d399;--ok-soft:#123a2a;--warn:#fbbf24;--warn-soft:#3a2f12;--bad:#f87171;--bad-soft:#3d1a1a;--shadow:none}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-variant-numeric:tabular-nums}
+svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+/* Sidebar */
+.side{background:var(--surface);border-right:1px solid var(--line);padding:20px 14px;display:flex;flex-direction:column;gap:18px;position:sticky;top:0;height:100vh}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;padding:0 6px}
+.logo b{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#13a39b);display:grid;place-items:center}
+.logo b i{width:12px;height:12px;border-radius:50%;background:#fff;display:block}
+.seg{display:flex;background:var(--surface-2);border-radius:12px;padding:3px}
+.seg button{flex:1;border:0;background:transparent;color:var(--muted);font:inherit;font-weight:600;font-size:13px;padding:7px 10px;border-radius:9px;cursor:pointer}
+.seg button.on{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;color:var(--muted);text-decoration:none;font-weight:500}
+.nav a.on{background:var(--brand-soft);color:var(--brand);font-weight:650}
+.nav a:hover{background:var(--surface-2)}
+.plan{margin-top:auto;background:var(--surface-2);border-radius:16px;padding:14px;font-size:13px;color:var(--muted)}
+.plan b{display:block;color:var(--ink);font-size:14px}
+/* Main */
+main{padding:28px 32px 120px;max-width:1200px;width:100%}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.top h1{font-size:24px;margin:0;font-weight:700;letter-spacing:-.3px}
+.top p{margin:2px 0 0;color:var(--muted);font-size:14px}
+.top .sp{margin-left:auto;display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:12px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer;background:var(--brand);color:#fff;min-height:44px}
+.btn.soft{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;display:grid;place-items:center;font-weight:700}
+/* Hero */
+.hero{border-radius:24px;padding:24px 26px;display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;background:linear-gradient(135deg,var(--warn-soft),var(--surface) 75%);border:1px solid color-mix(in srgb,var(--warn) 25%,transparent);box-shadow:var(--shadow)}
+.hero .badge{width:64px;height:64px;border-radius:20px;background:var(--warn);display:grid;place-items:center;color:#fff}
+.hero .badge svg{width:32px;height:32px;stroke-width:2}
+.hero small{font-weight:700;color:var(--warn);text-transform:uppercase;letter-spacing:.6px;font-size:12px}
+.hero h2{margin:2px 0 4px;font-size:24px;line-height:1.25;font-weight:700;letter-spacing:-.3px}
+.hero p{margin:0;color:var(--muted)}
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}
+.kpi{padding:16px 18px}
+.kpi .ic{width:36px;height:36px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;margin-bottom:10px}
+.kpi span{font-size:12px;color:var(--muted);font-weight:500}
+.kpi b{display:block;font-size:24px;font-weight:700;letter-spacing:-.4px;margin:2px 0}
+.kpi em{font-style:normal;font-size:12px;color:var(--muted)}
+.kpi em.w{color:var(--warn);font-weight:600}
+.grid{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-top:16px}
+.card h3{font-size:16px;margin:0;font-weight:650}
+.head{display:flex;align-items:center;gap:10px;padding:18px 20px 6px}
+.head .seg{margin-left:auto}
+.chart{padding:0 12px 14px}
+.tip{position:absolute;background:var(--ink);color:var(--surface);font-size:12px;padding:6px 10px;border-radius:10px;white-space:nowrap;transform:translate(-50%,-120%)}
+.alert{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:14px 18px;border-top:1px solid var(--line)}
+.alert .ai{width:36px;height:36px;border-radius:12px;display:grid;place-items:center}
+.alert b{font-weight:650;display:block}
+.alert p{margin:2px 0 8px;color:var(--muted);font-size:13px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font:inherit;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;min-height:34px}
+.chip.p{background:var(--brand);border-color:var(--brand);color:#fff}
+.fb{margin-left:auto;color:var(--muted);font-size:12px;display:flex;gap:4px;align-items:center}
+.fb button{border:0;background:var(--surface-2);border-radius:8px;width:30px;height:30px;cursor:pointer}
+/* FAB + sheet */
+.fab{position:fixed;right:32px;bottom:32px;width:60px;height:60px;border-radius:20px;border:0;background:var(--brand);color:#fff;box-shadow:0 10px 30px color-mix(in srgb,var(--brand) 45%,transparent);display:grid;place-items:center;cursor:pointer}
+.fab svg{width:28px;height:28px;stroke-width:2.2}
+.scrim{position:fixed;inset:0;background:rgba(10,20,26,.45);display:none;align-items:flex-end;justify-content:center;z-index:20}
+.sheet{background:var(--surface);width:min(560px,100%);border-radius:28px 28px 0 0;padding:10px 22px 28px;box-shadow:0 -10px 40px rgba(0,0,0,.2)}
+.grab{width:44px;height:5px;border-radius:9px;background:var(--line);margin:0 auto 14px}
+.mic{width:92px;height:92px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;margin:8px auto 4px;box-shadow:0 0 0 12px var(--brand-soft),0 0 0 24px color-mix(in srgb,var(--brand-soft) 50%,transparent)}
+.mic svg{width:38px;height:38px}
+.prop{border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin-top:18px;background:var(--surface-2)}
+.prop .amt{font-size:28px;font-weight:700;color:var(--bad)}
+.cat{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600}
+.cat.on{border-color:var(--brand);color:var(--brand);background:var(--brand-soft)}
+/* Mobile */
+.bottom{display:none}
+.mtop{display:none}
+@media (max-width:1023px){.app{grid-template-columns:76px 1fr}.side{padding:16px 10px}.side .logo span,.side .seg,.nav a span,.plan{display:none}.nav a{justify-content:center}}
+@media (max-width:767px){
+ .app{display:block}.side{display:none}
+ main{padding:14px 16px 120px}
+ .top{display:none}.mtop{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+ .mtop .seg{margin-left:auto;width:170px}
+ .hero{grid-template-columns:auto 1fr;padding:18px}.hero .btn{grid-column:1/-1;justify-content:center}
+ .hero .badge{width:48px;height:48px;border-radius:16px}.hero h2{font-size:20px}
+ .kpis{grid-template-columns:1fr 1fr;gap:10px}.kpi b{font-size:20px}
+ .grid{grid-template-columns:1fr}
+ .head .seg{margin-left:0;width:100%}.head{flex-wrap:wrap}
+ .fab{display:none}
+ .bottom{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding:8px 6px calc(8px + env(safe-area-inset-bottom));z-index:10}
+ .bottom a{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:var(--muted);text-decoration:none;font-weight:600}
+ .bottom a.on{color:var(--brand)}
+ .bottom .plus{width:56px;height:56px;border-radius:18px;background:var(--brand);color:#fff;display:grid;place-items:center;margin-top:-26px;box-shadow:0 8px 24px color-mix(in srgb,var(--brand) 45%,transparent)}
+ .bottom .plus svg{width:26px;height:26px;stroke-width:2.2}
+}
+@media (prefers-reduced-motion:no-preference){.card,.hero{animation:in .35s cubic-bezier(.2,.8,.2,1) both}.kpis .card:nth-child(2){animation-delay:.04s}.kpis .card:nth-child(3){animation-delay:.08s}.kpis .card:nth-child(4){animation-delay:.12s}@keyframes in{from{opacity:0;transform:translateY(8px)}}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+  <symbol id="cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+  <symbol id="calc" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="3"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h8"/></symbol>
+  <symbol id="chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></symbol>
+  <symbol id="chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></symbol>
+  <symbol id="gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></symbol>
+  <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="alert" viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01"/></symbol>
+  <symbol id="wallet" viewBox="0 0 24 24"><path d="M20 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-4a2 2 0 0 0 0 4h4v4a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5"/></symbol>
+  <symbol id="out" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+  <symbol id="down" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></symbol>
+  <symbol id="shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/></symbol>
+  <symbol id="badge" viewBox="0 0 24 24"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M19 10a7 7 0 0 1-14 0M12 17v5"/></symbol>
+  <symbol id="cam" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+  <symbol id="kb" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></symbol>
+  <symbol id="more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
+  <symbol id="wheat" viewBox="0 0 24 24"><path d="M2 22 16 8M3.5 12.5 5 11l1.5 1.5a3.5 3.5 0 0 1 0 5L5 19l-1.5-1.5a3.5 3.5 0 0 1 0-5zM7.5 8.5 9 7l1.5 1.5a3.5 3.5 0 0 1 0 5L9 15l-1.5-1.5a3.5 3.5 0 0 1 0-5zM11.5 4.5 13 3l1.5 1.5a3.5 3.5 0 0 1 0 5L13 11l-1.5-1.5a3.5 3.5 0 0 1 0-5z"/></symbol>
+</svg>
+
+<div class="app">
+  <aside class="side">
+    <div class="logo"><b><i></i></b><span>Caja Clara</span></div>
+    <div class="seg"><button class="on">Negocio</button><button>Personal</button></div>
+    <nav class="nav">
+      <a href="#" class="on"><svg class="i"><use href="#home"/></svg><span>Inicio</span></a>
+      <a href="#"><svg class="i"><use href="#list"/></svg><span>Movimientos</span></a>
+      <a href="#"><svg class="i"><use href="#cal"/></svg><span>Calendario</span></a>
+      <a href="#"><svg class="i"><use href="#calc"/></svg><span>Simulador</span></a>
+      <a href="#"><svg class="i"><use href="#chart"/></svg><span>Informes</span></a>
+      <a href="#"><svg class="i"><use href="#chat"/></svg><span>Asistente</span></a>
+      <a href="#"><svg class="i"><use href="#gear"/></svg><span>Ajustes</span></a>
+    </nav>
+    <div class="plan"><b>Plan Emprendedor</b>IA y avisos por WhatsApp activos</div>
+  </aside>
+
+  <main>
+    <div class="top">
+      <div><h1>Hola, Marta 👋</h1><p>Panadería La Esquina · martes 27 de octubre</p></div>
+      <div class="sp"><button class="btn soft"><svg class="i"><use href="#calc"/></svg>Simular compra</button><div class="avatar">M</div></div>
+    </div>
+    <div class="mtop"><div class="avatar" style="width:36px;height:36px">M</div><div><b>Hola, Marta</b><div style="font-size:12px;color:var(--muted)">La Esquina</div></div><div class="seg"><button class="on">Negocio</button><button>Personal</button></div></div>
+
+    <section class="hero">
+      <div class="badge"><svg class="i"><use href="#alert"/></svg></div>
+      <div>
+        <small>Precaución</small>
+        <h2>Te alcanza, pero el dom 1/11 quedás $185.000 debajo de tu reserva.</h2>
+        <p>Ese día pagás sueldos ($2,95 M). Mover el pago a Molinos Sur lo resuelve.</p>
+      </div>
+      <button class="btn">Ver cómo resolverlo</button>
+    </section>
+
+    <section class="kpis">
+      <div class="card kpi"><div class="ic"><svg class="i"><use href="#wallet"/></svg></div><span>Disponible hoy</span><b title="$3.800.000">$3,8 M</b><em>Cuentas y efectivo</em></div>
+      <div class="card kpi"><div class="ic"><svg class="i"><use href="#out"/></svg></div><span>Pagos de esta semana</span><b title="$5.240.000">$5,24 M</b><em>5 pagos · sueldos el dom</em></div>
+      <div class="card kpi"><div class="ic" style="background:var(--warn-soft);color:var(--warn)"><svg class="i"><use href="#down"/></svg></div><span>Tu peor día</span><b title="$615.000">$615 mil</b><em class="w">dom 1/11 · debajo de la reserva</em></div>
+      <div class="card kpi"><div class="ic"><svg class="i"><use href="#shield"/></svg></div><span>Cuota segura máxima</span><b title="$201.900">$202 mil</b><em>30% de tu margen mensual</em></div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <div class="head"><h3>Tu caja en los próximos 30 días</h3><div class="seg" style="width:270px"><button class="on">Base</button><button>Conservador</button><button>Estrés</button></div></div>
+        <div class="chart" style="position:relative"><svg id="ch" viewBox="0 0 640 250" style="width:100%;height:auto;display:block"></svg></div>
+      </div>
+      <div class="card">
+        <div class="head"><h3>Para tener en cuenta</h3><span style="margin-left:auto;font-size:12px;color:var(--muted)">3 alertas</span></div>
+        <div class="alert"><div class="ai" style="background:var(--warn-soft);color:var(--warn)"><svg class="i"><use href="#alert"/></svg></div><div><b>Bache de caja el dom 1/11</b><p>Coinciden sueldos, harina y monotributo.</p><div class="row"><button class="chip p">Reprogramar Molinos +7 días</button><span class="fb">¿Te sirvió? <button aria-label="Sí">👍</button><button aria-label="No">👎</button></span></div></div></div>
+        <div class="alert"><div class="ai" style="background:var(--brand-soft);color:var(--brand)"><svg class="i"><use href="#bell"/></svg></div><div><b>Mañana vence el alquiler</b><p>$650.000 · te avisamos por WhatsApp.</p><div class="row"><button class="chip">Marcar pagado</button></div></div></div>
+        <div class="alert"><div class="ai" style="background:var(--surface-2);color:var(--muted)"><svg class="i"><use href="#badge"/></svg></div><div><b>Monotributo al 93% del tope</b><p>Revisá la recategorización con tu contador.</p></div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<button class="fab" aria-label="Registrar movimiento"><svg class="i"><use href="#plus"/></svg></button>
+<nav class="bottom">
+  <a href="#" class="on"><svg class="i"><use href="#home"/></svg>Inicio</a>
+  <a href="#"><svg class="i"><use href="#list"/></svg>Movimientos</a>
+  <a href="#" aria-label="Registrar"><span class="plus"><svg class="i"><use href="#plus"/></svg></span></a>
+  <a href="#"><svg class="i"><use href="#cal"/></svg>Calendario</a>
+  <a href="#"><svg class="i"><use href="#more"/></svg>Más</a>
+</nav>
+
+<div class="scrim" id="sheet">
+  <div class="sheet">
+    <div class="grab"></div>
+    <div style="text-align:center;font-weight:650">Contame qué pasó</div>
+    <div class="mic"><svg class="i"><use href="#mic"/></svg></div>
+    <div style="text-align:center;color:var(--muted);font-size:13px">“Pagué 80 mil de harina a Molinos”</div>
+    <div class="row" style="justify-content:center;margin-top:14px"><button class="chip"><svg class="i" style="width:16px;height:16px;vertical-align:-3px"><use href="#cam"/></svg> Foto del ticket</button><button class="chip"><svg class="i" style="width:16px;height:16px;vertical-align:-3px"><use href="#kb"/></svg> Escribir</button></div>
+    <div class="prop">
+      <div class="row"><span style="width:40px;height:40px;border-radius:12px;background:#fef3c7;color:#b45309;display:grid;place-items:center"><svg class="i"><use href="#wheat"/></svg></span><div><b>Molinos Sur · harina</b><div style="font-size:12px;color:var(--muted)">Hoy · Negocio · interpretado con IA</div></div><div class="amt" style="margin-left:auto">−$80.000</div></div>
+      <div class="row" style="margin-top:12px"><span class="cat on">Insumos</span><span class="cat">Servicios</span><span class="cat">Otros</span><span class="cat">Personal</span></div>
+      <button class="btn" style="width:100%;justify-content:center;margin-top:14px">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Datos ilustrativos (mismo escenario que el prototipo: pago de $400.000 en 3 días)
+const ev={1:-650000,2:420000,3:-1180000,5:-2950000,7:-460000,10:-310000,12:380000,15:-520000,18:-780000,22:400000,25:-180000,28:-900000};
+const p=[3800000];for(let d=1;d<=30;d++)p.push(p[d-1]+235000+(ev[d]||0));
+const W=640,H=250,L=48,R=12,T=16,B=28,res=800000,lo=0,hi=Math.max(...p)*1.08;
+const x=d=>L+d/30*(W-L-R),y=v=>T+(hi-v)/(hi-lo)*(H-T-B);
+const line=p.map((v,d)=>(d?'L':'M')+x(d).toFixed(1)+' '+y(v).toFixed(1)).join('');
+const mi=p.indexOf(Math.min(...p));
+const cs=getComputedStyle(document.documentElement),brand=cs.getPropertyValue('--brand').trim(),warn=cs.getPropertyValue('--warn').trim(),muted=cs.getPropertyValue('--muted').trim(),lineC=cs.getPropertyValue('--line').trim();
+let s=`<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${brand}" stop-opacity=".28"/><stop offset="1" stop-color="${brand}" stop-opacity="0"/></linearGradient></defs>`;
+[0,1,2,3,4].forEach(k=>{const v=hi*k/4;s+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="${lineC}"/><text x="${L-8}" y="${y(v)+4}" font-size="11" text-anchor="end" fill="${muted}">${(v/1e6).toFixed(1).replace('.',',')} M</text>`});
+[0,5,10,15,20,25,30].forEach(d=>{s+=`<text x="${x(d)}" y="${H-8}" font-size="11" text-anchor="${d===30?'end':'middle'}" fill="${muted}">${d?'día '+d:'hoy'}</text>`});
+s+=`<path d="${line}L${x(30)} ${y(0)}L${x(0)} ${y(0)}Z" fill="url(#g)"/>`;
+s+=`<line x1="${L}" x2="${W-R}" y1="${y(res)}" y2="${y(res)}" stroke="${warn}" stroke-dasharray="5 5"/><text x="${W-R}" y="${y(res)-6}" font-size="11" text-anchor="end" fill="${warn}" font-weight="600">Reserva $800 mil</text>`;
+s+=`<path d="${line}" fill="none" stroke="${brand}" stroke-width="2.75" stroke-linejoin="round"/>`;
+s+=`<circle cx="${x(mi)}" cy="${y(p[mi])}" r="7" fill="${warn}" stroke="#fff" stroke-width="3"/>`;
+s+=`<g transform="translate(${x(mi)+14},${y(p[mi])-34})"><rect x="0" y="-16" width="150" height="40" rx="10" fill="${cs.getPropertyValue('--ink').trim()}"/><text x="10" y="0" font-size="11" fill="${cs.getPropertyValue('--surface').trim()}" opacity=".8">dom 1/11 · peor día</text><text x="10" y="16" font-size="13" font-weight="700" fill="${cs.getPropertyValue('--surface').trim()}">$615.000</text></g>`;
+document.getElementById('ch').innerHTML=s;
+const q=new URLSearchParams(location.hash.slice(1));
+if(q.get('sheet'))document.getElementById('sheet').style.display='flex';
+if(q.get('theme'))document.documentElement.dataset.theme=q.get('theme');
+document.querySelector('.fab').onclick=document.querySelector('.bottom .plus').parentElement.onclick=e=>{e.preventDefault();document.getElementById('sheet').style.display='flex'};
+document.getElementById('sheet').onclick=e=>{if(e.target.id==='sheet')e.currentTarget.style.display='none'};
+</script>
+</body>
+</html>

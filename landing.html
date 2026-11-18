@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#04191c" />
+  <meta name="description" content="AURA proyecta la plata de tu negocio día por día y te avisa antes de que falte. Registro por voz, alertas y simulador de cuotas." />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <title>AURA · Sabé hoy si te alcanza mañana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@600;700&display=swap" />
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="barra">
+    <div class="wrap barra__in">
+      <a class="marca" href="/landing" aria-label="AURA, inicio">
+        <span class="marca__icono" aria-hidden="true"><img src="/logo-aura.png" alt="" width="34" height="34" /></span>AURA
+      </a>
+      <nav class="barra__nav" aria-label="Secciones">
+        <a href="#alcanza">Cómo funciona</a>
+        <a href="#precios">Precios</a>
+      </nav>
+      <a class="boton boton--fantasma" href="/ingresar">Entrar</a>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- HERO: la curva de caja en partículas es el elemento memorable -->
+    <section class="hero" aria-labelledby="hero-titulo">
+      <div class="hero__escena" id="escena" aria-hidden="true">
+        <div class="hero__reserva" id="reserva"><span>Reserva mínima</span></div>
+        <div class="hero__peor" id="peor">
+          <span class="hero__punto"></span>
+          <span class="hero__etiqueta">Domingo 1: tu peor día.<br /><b>$615.000</b>, abajo de la reserva.</span>
+        </div>
+      </div>
+      <div class="wrap hero__contenido">
+        <h1 class="hero__titulo" id="hero-titulo">Sabé hoy si te alcanza mañana.</h1>
+        <p class="hero__bajada">AURA proyecta la plata de tu negocio día por día y te avisa antes de que falte. Para panaderías, rotiserías, talleres y todo negocio que cobra hoy y paga mañana.</p>
+        <div class="hero__acciones">
+          <a class="boton boton--principal iman" href="/registro?plan=gratis">Probar gratis</a>
+          <a class="boton boton--fantasma iman" href="#alcanza">Ver cómo funciona</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOMENTO 1: la respuesta -->
+    <section class="momento" id="alcanza" aria-labelledby="t-alcanza">
+      <div class="wrap momento__grilla">
+        <div class="momento__texto">
+          <h2 id="t-alcanza">Una respuesta, no una planilla.</h2>
+          <p>Abrís la app y la primera frase te dice si te alcanza. Si no te alcanza, te dice qué mover y en cuánto queda tu caja después.</p>
+        </div>
+        <div class="momento__visual">
+          <article class="estado" aria-live="polite">
+            <div class="estado__capa estado__capa--ambar"></div>
+            <div class="estado__capa estado__capa--verde"></div>
+            <div class="estado__cuerpo">
+              <span class="estado__icono" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="estado__alerta"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01"/></svg>
+                <svg viewBox="0 0 24 24" class="estado__ok"><path d="M20 6 9 17l-5-5"/></svg>
+              </span>
+              <div class="estado__textos">
+                <p class="estado__frase estado__frase--antes">Te alcanza, pero el domingo quedás <b>$185.000</b> debajo de tu reserva.</p>
+                <p class="estado__frase estado__frase--despues">Te alcanza. Tu peor día queda <b>$595.000</b> arriba de la reserva.</p>
+                <p class="estado__dato">Peor día: <b class="estado__monto" id="montoPeor">$615.000</b></p>
+              </div>
+            </div>
+            <button class="estado__accion" type="button" tabindex="-1">Reprogramar Molinos Sur 7 días</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOMENTO 2: registro por voz -->
+    <section class="momento momento--invertido" id="registro" aria-labelledby="t-registro">
+      <div class="wrap momento__grilla">
+        <div class="momento__texto">
+          <h2 id="t-registro">Registrá en 10 segundos.</h2>
+          <p>Le hablás como a un WhatsApp. La IA arma el movimiento con monto, categoría y fecha, y vos lo confirmás con un toque. También lee la foto de un ticket.</p>
+        </div>
+        <div class="momento__visual">
+          <article class="hoja">
+            <p class="hoja__titulo">Contame qué pasó</p>
+            <div class="hoja__mic micro" data-micro="mic" aria-hidden="true"></div>
+            <p class="hoja__dicho" aria-live="polite"><span id="dicho"></span><i class="hoja__cursor"></i></p>
+            <div class="hoja__pensando"><span class="micro" data-micro="loader" aria-hidden="true"></span>Interpretando</div>
+            <div class="propuesta">
+              <span class="propuesta__cat" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M2 22 16 8M3.5 12.5 5 11l1.5 1.5a3.5 3.5 0 0 1 0 5L5 19l-1.5-1.5a3.5 3.5 0 0 1 0-5zM7.5 8.5 9 7l1.5 1.5a3.5 3.5 0 0 1 0 5L9 15l-1.5-1.5a3.5 3.5 0 0 1 0-5zM11.5 4.5 13 3l1.5 1.5a3.5 3.5 0 0 1 0 5L13 11l-1.5-1.5a3.5 3.5 0 0 1 0-5z"/></svg>
+              </span>
+              <div><b>Molinos Sur, harina</b><small>Hoy, negocio, categoría Insumos</small></div>
+              <span class="propuesta__monto">−$80.000</span>
+            </div>
+            <div class="hoja__listo"><span class="micro" data-micro="check" aria-hidden="true"></span>Registrado</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOMENTO 3: simulador -->
+    <section class="momento momento--sim" id="simular" aria-labelledby="t-simular">
+      <div class="wrap momento__grilla">
+        <div class="momento__texto">
+          <h2 id="t-simular">Simulá antes de endeudarte.</h2>
+          <p>Antes de firmar una cuota, mirá qué parte de tu margen se lleva. Si pasa del 30%, te mostramos otra forma de pagarlo.</p>
+          <ol class="opciones" aria-label="Opciones para un horno de $3.600.000">
+            <li data-op="0"><span>12 cuotas de $383.588</span><b>57%</b></li>
+            <li data-op="1"><span>24 cuotas de $236.113</span><b>35%</b></li>
+            <li data-op="2"><span>Anticipo y 12 cuotas de $191.794</span><b>28%</b></li>
+          </ol>
+        </div>
+        <div class="momento__visual">
+          <figure class="medidor" aria-labelledby="medidor-pie">
+            <svg viewBox="0 0 320 190" class="medidor__svg" role="img" aria-label="Medidor del porcentaje del margen que se lleva la cuota">
+              <defs>
+                <linearGradient id="gradMedidor" x1="0" x2="1">
+                  <stop offset="0" stop-color="#7cf5c9" />
+                  <stop offset="1" stop-color="#c4f76a" />
+                </linearGradient>
+              </defs>
+              <path class="medidor__fondo" d="M30 170 A130 130 0 0 1 290 170" />
+              <path class="medidor__zona medidor__zona--ok" d="M30 170 A130 130 0 0 1 290 170" />
+              <path class="medidor__arco" id="arco" d="M30 170 A130 130 0 0 1 290 170" />
+              <g class="medidor__marcas">
+                <line id="marca30" x1="0" y1="0" x2="0" y2="0" />
+                <line id="marca40" x1="0" y1="0" x2="0" y2="0" />
+              </g>
+            </svg>
+            <div class="medidor__valor"><b id="pct">0%</b><span id="pctTexto">de tu margen</span></div>
+            <figcaption id="medidor-pie">Horno de $3.600.000 para una panadería con un margen de $673.000 por mes. Hasta 30% es seguro; de 30% a 40%, precaución.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRECIOS -->
+    <section class="precios" id="precios" aria-labelledby="t-precios">
+      <div class="wrap">
+        <h2 id="t-precios">Precios en pesos, sin letra chica.</h2>
+        <div class="planes">
+          <article class="plan">
+            <h3>Gratis</h3>
+            <p class="plan__precio">$0</p>
+            <ul>
+              <li>Incluye publicidad</li>
+              <li>30 registros por mes</li>
+              <li>Movimientos y caja a 30 días</li>
+            </ul>
+            <a class="boton boton--fantasma" href="/registro?plan=gratis">Empezar gratis</a>
+          </article>
+          <article class="plan plan--destacado">
+            <h3>Intermedio</h3>
+            <p class="plan__precio">$9.900<small>por mes</small></p>
+            <ul>
+              <li>Sin publicidad</li>
+              <li>Registros sin límite</li>
+              <li>Vencimientos, alertas, simulador y metas</li>
+            </ul>
+            <a class="boton boton--principal iman" href="/registro?plan=intermedio">Elegir Intermedio</a>
+          </article>
+          <article class="plan">
+            <h3>Full</h3>
+            <p class="plan__precio">$25.900<small>por mes</small></p>
+            <ul>
+              <li>Sin publicidad</li>
+              <li>Todo lo del plan Intermedio</li>
+              <li>Asistente con IA, informes y escenarios</li>
+            </ul>
+            <a class="boton boton--fantasma" href="/registro?plan=full">Elegir Full</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CIERRE -->
+    <section class="cierre" aria-labelledby="t-cierre">
+      <div class="wrap">
+        <h2 id="t-cierre">Tu caja del mes que viene, hoy.</h2>
+        <a class="boton boton--principal boton--grande iman" href="/registro?plan=gratis">Probar gratis</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="wrap">
+      <p>AURA es un proyecto académico del TP integrador de la Diplomatura en Inteligencia Artificial Práctica (UB). Los datos que se muestran son simulados.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/landing/main.ts"></script>
+</body>
+</html>

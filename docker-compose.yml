@@ -1,0 +1,30 @@
+# AURA para el grupo: la app y un enlace público de Cloudflare.
+# Se levanta con:  docker compose up -d --build
+# Enlace actual:   npm run enlace
+# La base de datos sigue siendo la PostgreSQL de esta Mac.
+
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_HOST: host.docker.internal
+      # El túnel llega desde la red interna de Docker: se confía en esas direcciones para leer la IP real.
+      TRUST_PROXY: loopback, uniquelocal
+    ports:
+      # Solo para probar desde esta Mac; desde afuera se entra por el enlace.
+      - "127.0.0.1:8090:3101"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:3101/api/planes"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  tunel:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate --protocol http2 --url http://app:3101
+    depends_on:
+      app:
+        condition: service_healthy
