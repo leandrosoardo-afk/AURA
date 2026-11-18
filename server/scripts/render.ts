@@ -15,8 +15,23 @@ if (!adminUrl || !clave) {
   process.exit(1);
 }
 
-const admin = new pg.Client({ connectionString: adminUrl });
-await admin.connect();
+// Después de un mantenimiento la base puede tardar en aceptar conexiones: se reintenta un rato.
+async function conectar(): Promise<pg.Client> {
+  for (let intento = 1; ; intento++) {
+    const cliente = new pg.Client({ connectionString: adminUrl });
+    try {
+      await cliente.connect();
+      return cliente;
+    } catch (error) {
+      await cliente.end().catch(() => {});
+      if (intento >= 20) throw error;
+      console.error(`La base todavía no responde (intento ${intento}): ${(error as Error).message}`);
+      await new Promise((r) => setTimeout(r, 5000));
+    }
+  }
+}
+
+const admin = await conectar();
 try {
   const existe = await admin.query('SELECT 1 FROM pg_roles WHERE rolname = $1', [ROL]);
   await admin.query(

@@ -3,6 +3,13 @@ import { config } from './config';
 
 export const pool = new pg.Pool({ connectionString: config.databaseUrl });
 
+// Si la base corta una conexión inactiva (reinicio o mantenimiento del servidor), el pool
+// avisa con este evento. Sin este manejador Node se cierra; así se registra y el pool
+// abre una conexión nueva en el próximo pedido.
+pool.on('error', (error) => {
+  console.error(`Se perdió una conexión con la base: ${error.message}`);
+});
+
 /**
  * Ejecuta `fn` en una transacción a nombre de un usuario. Las políticas de RLS
  * solo dejan ver y escribir sus filas, y el valor se descarta al terminar,
