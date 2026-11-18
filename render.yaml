@@ -1,0 +1,41 @@
+# AURA en Render (plan gratis): la app y su base PostgreSQL.
+# En Render: New → Blueprint → elegir este repositorio.
+# Las claves (Gemini y correo) se cargan en el panel de Render; nunca van en el código.
+
+services:
+  - type: web
+    name: aura
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerCommand: npx tsx server/scripts/render.ts
+    healthCheckPath: /api/planes
+    envVars:
+      - key: DATABASE_ADMIN_URL
+        fromDatabase:
+          name: aura-db
+          property: connectionString
+      - key: APP_DB_CLAVE
+        generateValue: true
+      # Render pone un balanceador de carga adelante: se confía en ese salto para leer la IP real.
+      - key: TRUST_PROXY
+        value: "1"
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: SMTP_FROM
+        sync: false
+
+databases:
+  - name: aura-db
+    plan: free
+    region: oregon
+    databaseName: aura
+    user: aura

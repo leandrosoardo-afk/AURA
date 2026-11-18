@@ -24,12 +24,14 @@ export const config = {
   databaseUrl: conHost(requerida(esTest ? 'DATABASE_TEST_URL' : 'DATABASE_URL')),
   host: process.env.HOST ?? '127.0.0.1',
   // Proxies en los que se confía para leer la IP real (Vite en desarrollo, el túnel en Docker).
-  proxiesConfiables: process.env.TRUST_PROXY ?? 'loopback',
+  // Un número indica cuántos saltos de proxy se cuentan (en Render, el balanceador de carga).
+  proxiesConfiables: /^\d+$/.test(process.env.TRUST_PROXY ?? '') ? Number(process.env.TRUST_PROXY) : (process.env.TRUST_PROXY ?? 'loopback'),
   // En Docker la misma API entrega la web ya compilada (carpeta dist).
   servirWeb: process.env.SERVIR_WEB === '1',
-  port: Number(process.env.API_PORT ?? 3101),
+  // Render indica el puerto en PORT; en esta Mac se usa API_PORT.
+  port: Number(process.env.PORT ?? process.env.API_PORT ?? 3101),
   produccion: process.env.NODE_ENV === 'production',
-  // Dirección pública de la app, para los enlaces que se mandan por mail.
-  urlApp: (process.env.APP_URL ?? 'http://localhost:4173').replace(/\/$/, ''),
+  // Dirección pública de la app, para los enlaces que se mandan por mail (Render la informa en RENDER_EXTERNAL_URL).
+  urlApp: (process.env.APP_URL ?? process.env.RENDER_EXTERNAL_URL ?? 'http://localhost:4173').replace(/\/$/, ''),
   origenes: (process.env.APP_ORIGINS ?? 'http://localhost:4173,http://127.0.0.1:4173').split(','),
 };
