@@ -34,9 +34,15 @@ async function conectar(): Promise<pg.Client> {
 const admin = await conectar();
 try {
   const existe = await admin.query('SELECT 1 FROM pg_roles WHERE rolname = $1', [ROL]);
-  await admin.query(
-    `${existe.rowCount ? 'ALTER' : 'CREATE'} ROLE ${admin.escapeIdentifier(ROL)} LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOBYPASSRLS PASSWORD ${admin.escapeLiteral(clave)}`,
-  );
+  if (!existe.rowCount) {
+    await admin.query(
+      `CREATE ROLE ${admin.escapeIdentifier(ROL)} LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOBYPASSRLS PASSWORD ${admin.escapeLiteral(clave)}`,
+    );
+  } else {
+    // En Render el dueño de la base no es superusuario: no puede volver a declarar atributos
+    // como NOBYPASSRLS (el rol ya se creó sin ellos). Solo se actualiza la clave.
+    await admin.query(`ALTER ROLE ${admin.escapeIdentifier(ROL)} WITH LOGIN PASSWORD ${admin.escapeLiteral(clave)}`);
+  }
   const base = new URL(adminUrl).pathname.slice(1);
   await admin.query(`GRANT CONNECT ON DATABASE ${admin.escapeIdentifier(base)} TO ${admin.escapeIdentifier(ROL)}`);
   await admin.query(`GRANT USAGE ON SCHEMA public TO ${admin.escapeIdentifier(ROL)}`);
